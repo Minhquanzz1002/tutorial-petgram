@@ -19,7 +19,7 @@ import { StylesProvider } from '@material-ui/core/styles'
 import './Navbar.css'
 import logo from '../../../images/logo.jpg'
 
-export const Navbar = () => {
+export const Navbar = withRouter(({ account, connectWallet }) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
 
@@ -124,6 +124,32 @@ export const Navbar = () => {
             <div className="grow" />
             <div className="sectionDesktop">
               {/* Add Account  */}
+              {
+                account ? (
+                  <>
+                    <Button className="whiteLink">
+                      {account.substring(0, 8)}...{account.substring(32, 24)}
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="connected-btn"
+                      endIcon={<VerifiedUserSharpIcon />}
+                    >
+                      Connected
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    variant="contained"
+                    className="connect-wallet-btn"
+                    onClick={() => {
+                      connectWallet()
+                    }}
+                  >
+                    Connect Wallet
+                  </Button>
+                )
+              }
 
               <IconButton
                 edge="end"
@@ -154,4 +180,4 @@ export const Navbar = () => {
       </div>
     </StylesProvider>
   )
-}
+})
