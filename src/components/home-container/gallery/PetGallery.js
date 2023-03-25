@@ -25,9 +25,7 @@ function PetGallery() {
             'Content-Type': 'application/json',
           },
         })
-        // console.log(cids)
         cids = await cids.json()
-        // console.log(cids)
         const temp = []
         for (let cid of cids.value) {
           if (cid?.cid) {

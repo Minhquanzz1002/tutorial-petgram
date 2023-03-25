@@ -15,8 +15,8 @@ contract Pet is ERC721 {
     function mintPetNFT(string memory _tokenURI) external {
 
         uint256 _tokenId = totalSupply().add(1);
-        _safeMint(msg.sender, _tokenId);
-        _setTokenURI(_tokenId, _tokenURI);
+        _safeMint(msg.sender, _tokenId);            
+        _setTokenURI(_tokenId, _tokenURI);          // set the tokenURI for tokenId
         emit PetNFTCreated(_tokenId, _tokenURI, now, msg.sender);
     }
 }

@@ -16,7 +16,9 @@ function App() {
   const [account, setAccount] = useState('')
   const [contractData, setContractData] = useState('')
 
+  // connect to metamask and reads it into the app using web3
   const loadWeb3 = async () => {
+    // detect the Ethereum provider
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -33,16 +35,14 @@ function App() {
     const web3 = window.web3
     const accounts = await web3.eth.getAccounts()
     setAccount(accounts[0])
-    const networkId = await web3.eth.net.getId()
+    const networkId = await web3.eth.net.getId()    // 80001
     const networkData = MyPet.networks[networkId]
 
     if (networkData) {
+      // Application Binary Interface is the json format of the smart contract that contains its functions and methods
       const abi = MyPet.abi
-      console.log(abi)
-      const address = MyPet.networks[networkId].address
-      console.log(address)
+      const address = MyPet.networks[networkId].address       // get address contract
       const myContract = new web3.eth.Contract(abi, address)
-      console.log(myContract)
       setContractData(myContract)
     } else {
       window.alert(
