@@ -32,6 +32,8 @@ function PetDetails({ account, contractData }) {
   const [input, setInput] = useState('')              // value of TextField comment
   const [comment, setComment] = useState('')  
   const [codeHash, setCodeHash] = useState('')        // transaction hash. Ex: 0x140d9421443d17b30c91325b693835e5ed0085d159cd1a8268368c3272f79502
+  const [active, setActive] = useState(false)
+  const [likeNumber, setLikeNumber] = useState(0)
 
   useEffect(() => {
     // Callback
@@ -39,7 +41,14 @@ function PetDetails({ account, contractData }) {
       getMetadata()
       getImage()
     }
-  }, [petId, contractData]) // dependency array: Callback khi petId hoặc contractData thay đổi
+    if (active) {
+      setLikeNumber((likeNumber) => likeNumber + 1)
+    }else{
+      if (likeNumber != 0){
+        setLikeNumber((likeNumber) => likeNumber - 1)
+      }
+    }
+  }, [petId, contractData, active]) // dependency array: Callback khi petId hoặc contractData thay đổi
 
 
   const getImage = (ipfsURL) => {
@@ -47,6 +56,10 @@ function PetDetails({ account, contractData }) {
     ipfsURL = ipfsURL.split('://')
     return 'https://ipfs.io/ipfs/' + ipfsURL[1]
   }
+
+  const handleClick = () => {
+    setActive(!active);
+  };
 
   // get metadata from IPFS
   const getMetadata = async () => {
@@ -111,11 +124,11 @@ function PetDetails({ account, contractData }) {
               <img className="img" src={image} alt="pet" />
               <div className="flex-container">
                 <div>
-                  <IconButton aria-label="add to favorites"><FavoriteIcon /></IconButton>
+                  <IconButton aria-label="add to favorites"><FavoriteIcon onClick={handleClick} style={{ color: active ? "red" : "" }} /></IconButton>
                   <IconButton aria-label="share"><ShareIcon /></IconButton>
                 </div>
 
-                <Typography variant="body1" color="primary">0 Likes</Typography>
+                <Typography variant="body1" color="primary">{likeNumber} Likes</Typography>
               </div>
 
               <Typography gutterBottom variant="subtitle1" className="details-text">Pet's Details</Typography>

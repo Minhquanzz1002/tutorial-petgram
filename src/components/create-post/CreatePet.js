@@ -20,12 +20,14 @@ function CreatePet() {
   const history = useHistory()
   const [image, setImage] = useState('')
   const petTypeRef = createRef()
+  const petFurRef = createRef()
   const [petName, setPetName] = useState('')
   const [loading, setLoading] = useState(false)
   const [ownerName, setOwnerName] = useState('')
   const [imageName, setImageName] = useState('')
   const [imageType, setImageType] = useState('')
   const [petType, setPetType] = useState('')
+  const [petFur, setPetFur] = useState('')
 
   const handleImage = (event) => {
     setImage(event.target.files[0])
@@ -42,6 +44,10 @@ function CreatePet() {
         name: petName,
         description: `${ownerName}, ${petType}`,
         image: new File([image], imageName, { type: imageType }),
+        attributes: [
+          {trait_type: 'Type', value: petType},
+          {trait_type: 'Fur', value: petFur}
+        ]
       })
       if (metadata) {
         history.push('/')
@@ -119,6 +125,24 @@ function CreatePet() {
                 <MenuItem value="Dog">Dog</MenuItem>
                 <MenuItem value="Bird">Bird</MenuItem>
                 <MenuItem value="Fish">Fish</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
+              </TextField>
+
+              <TextField
+                fullWidth
+                name="petFur"
+                select
+                label="Choose one option"
+                variant="outlined"
+                className="text-field"
+                onChange={(e) => setPetFur(e.target.value)}
+                defaultValue=""
+                ref={petFurRef}
+              >
+                <MenuItem value="Black">Black</MenuItem>
+                <MenuItem value="White">White</MenuItem>
+                <MenuItem value="Snow">Snow</MenuItem>
+                <MenuItem value="Spot">Spot</MenuItem>
                 <MenuItem value="Other">Other</MenuItem>
               </TextField>
               <Button
