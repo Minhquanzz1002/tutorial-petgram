@@ -14,12 +14,14 @@ function Home() {
             label="Today NFTS"
             color="primary"
             clickable
+            style={{backgroundColor: "#3f51b5", color: "white", borderRadius: "16px", marginRight: "5px"}}
           />
 
           <Chip
             size="medium"
             label="Last Week"
             clickable
+            style={{backgroundColor: "rgb(172, 169, 169)", color: "white", borderRadius: "16px"}}
           />
         </div>
         <PetGallery />

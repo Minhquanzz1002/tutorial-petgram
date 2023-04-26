@@ -1,4 +1,4 @@
-.grow {
+/* .grow {
     flex-grow: 1;
 }
 
@@ -52,7 +52,7 @@
 
 .inputRoot {
     color: 'inherit';
-}
+} */
 
 .sectionMobile {
     display: flex;
@@ -60,14 +60,14 @@
 
 .connect-wallet-btn {
     background-color: #06c2fbcc;
-    color: white;
-    font-weight: 800;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
     text-transform: none;
 }
 
 .connected-btn {
     background-color: #15d636cc;
     color: white;
-    font-weight: 800;
+    font-weight: 600;
     text-transform: none;
 }

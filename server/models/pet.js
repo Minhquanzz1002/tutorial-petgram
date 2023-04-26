@@ -6,8 +6,9 @@ const PetSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
+    created: {type: String},
     favourites: [
-        {type: String, unique: true}
+        {type: String}
     ],
     comments: [
         {

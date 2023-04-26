@@ -5,65 +5,55 @@ import {
   Container,
   Grid,
   Link,
-  StylesProvider,
   Typography,
 } from '@material-ui/core'
 import './Footer.css'
-import logo from '../../../images/logo.jpg'
 
 function Footer() {
   return (
-    <StylesProvider injectFirst>
-      <footer>
-        <AppBar className="primary-color marginT-3 pad-2" position="static">
-          <Grid component={Container} container>
-            <Grid item xs={12} sm={3}>
-              <img src={logo} alt="logo" className="footer-logo" />
-            </Grid>
+    <footer>
+      <AppBar className="primary-color marginT-3 pad-2" position="static">
+        <Grid component={Container} container>
+          <Grid container direction="row" justifyContent="center" alignItems="center" className='footer-wrapper' >
+            <Link className="link" component={RouterLink} to="/" style={{color: "white", margin: "0.7rem"}}>
+              Home
+            </Link>
+            <span>|</span>
 
-            <Grid item xs={12} sm={9} className="links">
-              <Link className="link" component={RouterLink} to="/">
-                Home
-              </Link>
-              <span>/</span>
+            <Link className="link" component={RouterLink} to="/" style={{color: "white", margin: "0.7rem"}}>
+              About
+            </Link>
+            <span>|</span>
 
-              <Link className="link" component={RouterLink} to="/">
-                About
-              </Link>
-              <span>/</span>
+            <Link className="link" component={RouterLink} to="/create-pet" style={{color: "white", margin: "0.7rem"}}>
+              Create a Pet
+            </Link>
+            <span>|</span>
 
-              <Link className="link" component={RouterLink} to="/">
-                Create a Pet
-              </Link>
-              <span>/</span>
+            <Link className="link" component={RouterLink} to="/" style={{color: "white", margin: "0.7rem"}}>
+              Get Started
+            </Link>
+            <span>|</span>
 
-              <Link className="link" component={RouterLink} to="/">
-                Get Started
-              </Link>
-              <span>/</span>
+            <Link className="link" component={RouterLink} to="/" style={{color: "white", margin: "0.7rem"}}>
+              Terms
+            </Link>
+            <span>|</span>
 
-              <Link className="link" component={RouterLink} to="/">
-                Terms
-              </Link>
-              <span>/</span>
-
-              <Link className="link" component={RouterLink} to="/">
-                Privacy
-              </Link>
-            </Grid>
-
-            <Grid item xs={12} sm={3}></Grid>
-
-            <Grid item xs={12} sm={9}>
-              <Typography className="copyright">
-                Copyright &copy; {new Date().getFullYear()} PetGram
-              </Typography>
-            </Grid>
+            <Link className="link" component={RouterLink} to="/" style={{color: "white", margin: "0.7rem"}}>
+              Privacy
+            </Link>
           </Grid>
-        </AppBar>
-      </footer>
-    </StylesProvider>
+
+          <Grid xs={12} direction="row" justifyContent="center" alignItems="center" container>
+            <Typography className="copyright">Copyright &copy; {new Date().getFullYear()} PetGram</Typography>
+          </Grid>
+        </Grid>
+      </AppBar>
+    </footer>
   )
 }
 
 export default Footer
+
+
